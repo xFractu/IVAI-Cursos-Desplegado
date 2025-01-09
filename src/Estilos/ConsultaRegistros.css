@@ -57,7 +57,7 @@ body {
     position: absolute;
     max-height: 8vw;
     width: auto;
-    margin-left: 2vw;
+    margin-left: 9vw;
 
 }
 
@@ -97,7 +97,10 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    max-height: 40vh;
+    max-height: 40vh; 
+    overflow-y: auto;
+    overflow-x: none; 
+    padding: 10px;
 }
 
 table {
@@ -112,12 +115,18 @@ td {
 
 td {
     max-height: 10vh;
+    text-align: center; 
 }
 
 th {
     font-size: large;
-    padding: 30px;
+    padding: 30px; 
+    background-color: #A35494;
+    color: #ffffff;
     border: #B1B1B1;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .back-icon {
@@ -139,6 +148,10 @@ th {
 
 .icon-text {
     font-size: large;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    
 }
 
 .table-Data {

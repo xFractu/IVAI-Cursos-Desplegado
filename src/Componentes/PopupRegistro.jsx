@@ -213,7 +213,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
 
                             <Grid container item xs={12} alignItems="center" spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Ultimo grado de estudios:</Typography>
+                                    <Typography variant="body2">Último grado de estudios:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Select
@@ -258,7 +258,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
 
                             <Grid container item xs={12} alignItems="center" spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">orden de gobierno:</Typography>
+                                    <Typography variant="body2">Orden de gobierno:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Select
@@ -335,7 +335,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
 
                             <Grid container item xs={12} alignItems="center" spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">nombre de la entidad o dependencia:</Typography>
+                                    <Typography variant="body2">Nombre de la entidad o dependencia:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField name='so' fullWidth variant="outlined" size="small" onChange={handleInputChange} sx={{
@@ -406,7 +406,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
 
                             <Grid container item xs={12} alignItems="center" spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Telefono institucional*:</Typography>
+                                    <Typography variant="body2">Teléfono institucional*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField name='telefono' fullWidth variant="outlined" size="small" onChange={handleInputChange} error={!!errors.telefono} helperText={errors.telefono} sx={{

@@ -32,7 +32,7 @@ function catalogoCursos() {
         mensaje: ''
     });
 
-    const CursoPerPage = 10;
+    const CursoPerPage = 8;
     const navigate = useNavigate();
 
     const getTipoCursos = async () => {
@@ -162,15 +162,16 @@ function catalogoCursos() {
         <>
             <section className="layout">
                 <div className="header">
-                    <h1 className="header-title">
-                    </h1>
-                    <img src={ivaiImage} alt="Icono IVAI" className="header-img-left" />
-                </div>
-                <div className='Main-Admin'>
-                    <div className='back-icon'>
+                <div className='back-icon'>
                         <img src={Arrow} alt='Flecha Regresar' className='icon' onClick={handleNavigation} />
                         <label className='icon-text'>Regresar</label>
                     </div>
+                    <h1 className="header-title">
+                    </h1>
+                    
+                </div>
+                <div className='Main-Admin'>
+                    
                     <div className='table-Container'>
                         <table>
                             <thead>

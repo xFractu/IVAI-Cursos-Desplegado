@@ -94,7 +94,7 @@ function PopupCatalogo({ onClose, reloadCursos, setIsPopupOpenAddCatalogoMsj, se
                                         sx={{
                                             backgroundColor: '#FFFFFF', 
                                             borderRadius: '15px', 
-                                            width: '22vw',
+                                            width: '18vw',
                                             '& .MuiOutlinedInput-root': {
                                                 borderRadius: '15px',
                                             }

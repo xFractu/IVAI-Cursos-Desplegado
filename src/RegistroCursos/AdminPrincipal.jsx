@@ -25,7 +25,7 @@ function AdminPrincipal() {
             <section class="layout">
                 <div class="header">
                     <h1 className="header-title">
-                        Cursos disponibles
+                        RLCE Admin Control
                     </h1>
                     <img src={ivaiImage} alt="" className="header-img-left" />
                     

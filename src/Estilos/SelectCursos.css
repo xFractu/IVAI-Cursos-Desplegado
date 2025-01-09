@@ -35,6 +35,11 @@
     font-size: 30px;
     display: inline-block;
     min-width: 15vw;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  h1 {
+    font-family: 'Roboto', sans-serif;
   }
 
   .cuadroBusqueda {
@@ -70,7 +75,7 @@
     border-radius: 20px;
     background-color: #A35494;
     padding-top: 2vh;
-    margin-top: 18vh;
+    margin-top: 2vh;
 }
 
 .header_Modificar_Curso{
@@ -89,11 +94,12 @@
   
   .main_Modificar_Curso{
     flex-grow: 1;
-    max-height: 60vh;
+    max-height: 70vh;
     overflow-y: scroll;
     max-width: 100%;
     scrollbar-width: none;
   }
+  
   
   .footer_Modificar_Curso {
     padding-bottom: 2vh;

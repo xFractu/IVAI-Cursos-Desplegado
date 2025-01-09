@@ -36,7 +36,7 @@ function ConsultaRegistros(Props) {
     const id = window.localStorage.getItem('id');
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
-    const registrosPerPage = 10;
+    const registrosPerPage = 6;
 
     const getRegistros = async (idCurso) => {
         try {
@@ -166,15 +166,17 @@ function ConsultaRegistros(Props) {
         <>
             <section className="layout">
                 <div className="header">
-                    <h1 className="header-title">
-                    </h1>
-                    <img src={ivaiImage} alt="Icono IVAI" className="header-img-left" />
-                </div>
-                <div className='Main-Admin'>
-                    <div className='back-icon'>
+                <div className='back-icon'>
                         <img src={Arrow} alt='Flecha Regresar' className='icon' onClick={handleNavigation} />
                         <label className='icon-text'>Regresar</label>
                     </div>
+                    <h1 className="header-title">
+                    </h1>
+                    
+                    
+                </div>
+                <div className='Main-Admin'>
+                    
                     <div className='table-Container'>
                         <table>
                             <thead>
