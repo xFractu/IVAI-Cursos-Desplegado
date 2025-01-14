@@ -78,7 +78,7 @@ function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
             <div className='layout_Select'>
 
                 <header className="header_Select">
-                    <h1 className = "textModificar">Seleccione el curso a modificar:</h1>
+                    <h1>Seleccione el curso a modificar:</h1>
                     <label htmlFor='campoBusqueda' className='textoBusqueda'><strong>Buscar Curso: </strong></label>
                     <input type='text' id='campoBusqueda' className='cuadroBusqueda' placeholder='Ingrese el nombre o fecha del curso (Año-Mes-Día)' onChange={(e) => setCursoBuscado(e.target.value)}></input>
                 </header>

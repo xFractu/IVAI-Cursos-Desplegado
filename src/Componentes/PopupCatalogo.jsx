@@ -80,7 +80,7 @@ function PopupCatalogo({ onClose, reloadCursos, setIsPopupOpenAddCatalogoMsj, se
                         <CardContent sx={{ color: '#FFFFFF' }}>
                             <Grid container item xs={12} alignItems='center' spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '100%', fontSize: '2vh', fontWeight: 'bold' }}>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
                                         Nombre del Tipo de Curso:
                                     </Typography>
                                 </Grid>

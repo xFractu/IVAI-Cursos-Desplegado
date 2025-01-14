@@ -1,8 +1,8 @@
 .layout_agregar_curso{
     border-radius: 20px;
     background-color: #A35494;
-    margin-top: 4vw;
-    margin-left: 0vw;
+    margin-top: 2vw;
+    margin-left: 1vw;
     margin-bottom: 4vw;
     padding-left: 1vw;
     padding-right: 1vw;
@@ -39,7 +39,7 @@
   
   .main_agregar_curso{
     flex-grow: 1;
-    max-height: 60vh;
+    max-height: 65vh;
     overflow-y: scroll;
     max-width: 100%;
     scrollbar-width: none;

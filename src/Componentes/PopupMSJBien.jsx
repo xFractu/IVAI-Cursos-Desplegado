@@ -18,7 +18,7 @@ function PopupMSJBien({ icon, title, message, buttonText, onClose, onClosePrev, 
         <>
 
             <div className = "popup-msj-contenedor">
-            <Card variant="outlined" sx={{maxHeight:"100%",maxHeight:"100%", borderRadius: 5, zIndex: 2, ...cardStyle }}>
+            <Card variant="outlined" sx={{maxHeight:"100%", borderRadius: 5, zIndex: 2, ...cardStyle }}>
                 <CardContent sx={{ textAlign: 'center' }}>
                     <div className = "contenedor-msj">
                     {icon && <img src={icon} className="IconoCard" alt="Popup Icon" />}
