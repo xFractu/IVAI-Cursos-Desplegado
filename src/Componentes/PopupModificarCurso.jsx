@@ -13,7 +13,8 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
 
     const getTiposCurso = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/tipos');
+            // const response = await fetch('http://187.216.225.247:4567/tipos');
+            const response = await fetch('http://localhost:4567/tipos');
             const data = await response.json();
             setDataTiposCurso(data);
         } catch (error) {
@@ -23,8 +24,7 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
 
     useEffect(() => {
         const fetchTiposCurso = async () => {
-            const tipos = await getTiposCurso();
-            setItems(tipos);
+            getTiposCurso();
         };
 
         fetchTiposCurso();
@@ -70,15 +70,15 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
+        setFormData(formData => ({
+            ...formData,
             [name]: value,
-        }));
+        }))
 
-        setErrors(prevErrors => ({
-            ...prevErrors,
+        setErrors(errors => ({
+            ...errors,
             [name]: '',
-        }));
+        }))
     };
 
     const handleSubmit = async () => {
@@ -97,7 +97,12 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
         }
 
         try {
-            const response = await Axios.put('http://187.216.225.247:4567/actualizar', finalFormData, {
+            // const response = await Axios.put('http://187.216.225.247:4567/actualizar', finalFormData, {
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     }
+            // });
+            const response = await Axios.put('http://localhost:4567/actualizar', finalFormData, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
@@ -105,7 +110,6 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
             onOpenPopupMsj();
         } catch (error) {
             console.error('Error al actualizar el curso:', error);
-
             setIsPopupOpen(true);
         }
     };
@@ -153,15 +157,10 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
                             </Grid>
                         }
                     />
-
                 </header>
 
                 <main className="main_Modificar_Curso">
-
-
-
                     <div className='ScrollRegistro2'>
-
                         <CardContent sx={{ color: '#FFFFFF' }}>
                             <Grid container item xs={12} alignItems="center" spacing={2}>
                                 <Grid item xs={6}>
@@ -170,7 +169,7 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
                                 <Grid item xs={6}>
                                     <TextField
                                         fullWidth
-                                        variant='outlined'
+                                        variant="outlined"
                                         size="small"
                                         name="nombreCurso"
                                         value={formData.nombreCurso}
@@ -429,7 +428,7 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
                                         defaultValue='curso'
                                     >
                                         {dataTiposCurso.map((item) => (
-                                            <MenuItem value={item}>{item}</MenuItem>
+                                            <MenuItem value={item} key={item}>{item}</MenuItem>
                                         ))}
                                     </Select>
                                 </Grid>

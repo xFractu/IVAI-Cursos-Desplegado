@@ -27,7 +27,8 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
 
     const getTiposCurso = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/tipos');
+            // const response = await fetch('http://187.216.225.247:4567/tipos');
+            const response = await fetch('http://localhost:4567/tipos');
             const data = await response.json();
             setDataTiposCurso(data);
         } catch (error) {
@@ -112,7 +113,8 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
             }
         
             try {
-                const respuesta = await axios.post("http://187.216.225.247:4567/registroCurso", DataCurso);
+                // const respuesta = await axios.post("http://187.216.225.247:4567/registroCurso", DataCurso);
+                const respuesta = await axios.post("http://localhost:4567/registroCurso", DataCurso);
         
                 if (respuesta.status === 200) {
                     onOpenPopupMsj({

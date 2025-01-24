@@ -26,7 +26,8 @@ function Principal() {
 
     const getCursos = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/obtenerCursos');
+            // const response = await fetch('http://187.216.225.247:4567/obtenerCursos');
+            const response = await fetch('http://localhost:4567/obtenerCursos');
             const data = await response.json();
             setDataCurso(data);
         } catch (error) {

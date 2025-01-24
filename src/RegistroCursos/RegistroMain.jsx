@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import AgregarCurso from '../assets/add.svg';
-import ModificarCurso from '../assets/update.svg';
+import ModificarCursoSVG from '../assets/update.svg';
 import CatalogoIcon from '../assets/catalogo.svg';
 import '../Estilos/RegistroMain.css';
 import SelectCurso from '../Componentes/SelectCurso.jsx';
@@ -12,6 +12,7 @@ import PopupMSJBien from '../Componentes/PopupMSJBien.jsx'
 import ConfirmIcon from '../assets/check.svg';
 import ErrorIcon from '../assets/error.svg';
 import PopupModificarCurso from '../Componentes/PopupModificarCurso.jsx';
+import ModificarCurso from "../Componentes/modificarCurso.jsx";
 
 
 function RegistroMain() {
@@ -137,7 +138,7 @@ function RegistroMain() {
         
             <Card onClick={handleOpenUpdatePopup} variant="outlined" sx={{ width:'20vw',height:'40vh',minHeight:'1vh',maxHeight:'30vh',minWidth:'10vw', borderColor:'#a35494', borderWidth:'.5vh', borderRadius: 3, display:'inline-flex',marginLeft:5, cursor: 'pointer'}}>
                 <CardContent sx={{ textAlign:'center', width:'100%' }}> 
-                    <img src={ModificarCurso} className="IconoCard"/>
+                    <img src={ModificarCursoSVG} className="IconoCard"/>
                     <Typography variant='h3' sx={{ color:'#A35494', fontSize:"5vh" }}>Modificar</Typography>
                     <Typography variant='h3' sx={{ color:'#A35494', fontSize:"5vh" }}>Curso</Typography>
                 </CardContent>
@@ -203,7 +204,7 @@ function RegistroMain() {
         {isPopupOpenUpdateCurso && selectedCurso && (
                 <div className="popup-overlay">
                     <div className={`popup-content ${isPopupOpenUpdateCurso ? 'popup-show' : 'popup-hide'}`}>
-                        <PopupModificarCurso 
+                        <ModificarCurso 
                             onClose={handleClosePopupUpdateCurso}
                             nombreCurso={selectedCurso.nombreCurso}
                             fecha={selectedCurso.fecha} 

@@ -35,10 +35,10 @@ function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
 
     const reloadCursos = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/obtenerCursos');
+            // const response = await fetch('http://187.216.225.247:4567/obtenerCursos');
+            const response = await fetch('http://localhost:4567/obtenerCursos');
             const data = await response.json();
             setDataCurso(data);
-            funcion();
         } catch (error) {
             console.error('Error al obtener los registros de curso:', error);
         }

@@ -51,8 +51,8 @@ function Login() {
 
     const peticionLogin = async () => {
         try {
-            const respuesta = await axios.post("http://187.216.225.247:4567/validacion", datosFormulario);
-            console.log("Respuesta de peticion: " + respuesta);
+            // const respuesta = await axios.post("http://187.216.225.247:4567/validacion", datosFormulario);
+            const respuesta = await axios.post("http://localhost:4567/validacion", datosFormulario);
             return respuesta;
         } catch (error) {
             throw error;
@@ -85,7 +85,6 @@ function Login() {
 
         try {
             const respuesta = await peticionLogin();
-            console.log("Respuesta de LOGIN: ", respuesta.data);
 
             if (respuesta.data.mensaje === 'Usuario correcto') {
                 login(respuesta.data.token);
@@ -139,15 +138,15 @@ function Login() {
     };
 
     return (<>
-        <section class="layout_l">
-            <div class="contenedorLogin">
-                <div class="left">
+        <section className="layout_l">
+            <div className="contenedorLogin">
+                <div className="left">
                     <div id="ContenedorFachada">
                         <img className='fachada' src={ivaiFachada} />
-                        <img class="logo_ivai" src={ivaiImage} />
+                        <img className="logo_ivai" src={ivaiImage} />
                     </div>
                 </div>
-                <div class="right">
+                <div className="right">
                     <img src={rlceImage} className='img-right-l'></img>
 
                     <form action="" className='form-login' onSubmit={procesarFormulario}>

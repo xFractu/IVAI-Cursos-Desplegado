@@ -22,8 +22,8 @@ function AdminPrincipal() {
 
     return (
         <>
-            <section class="layout">
-                <div class="header">
+            <section className="layout">
+                <div className="header">
                     <h1 className="header-title">
                         RLCE Admin Control
                     </h1>

@@ -10,7 +10,6 @@
   }
 }
 
-/* Animación para cerrar el popup (de opacidad 1 a 0) */
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -22,12 +21,10 @@
   }
 }
 
-/* Aplicar la animación de apertura */
 .popup-show {
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* Aplicar la animación de cierre */
 .popup-hide {
   animation: fadeOut 0.3s ease-in forwards;
 }

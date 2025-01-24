@@ -40,7 +40,8 @@ function ConsultaRegistros(Props) {
 
     const getRegistros = async (idCurso) => {
         try {
-            const response = await fetch(`http://187.216.225.247:4567/obtenerRegistros/${idCurso}`);
+            // const response = await fetch(`http://187.216.225.247:4567/obtenerRegistros/${idCurso}`);
+            const response = await fetch(`http://localhost:4567/obtenerRegistros/${idCurso}`);
             const data = await response.json();
             setDataRegistros(data);
         } catch (error) {
@@ -98,7 +99,8 @@ function ConsultaRegistros(Props) {
 
     const obtenerRegistros = async (idCurso) => {
         try {
-            const response = await fetch(`http://187.216.225.247:4567/obtenerExcelRegistros/${idCurso}`);
+            // const response = await fetch(`http://187.216.225.247:4567/obtenerExcelRegistros/${idCurso}`);
+            const response = await fetch(`http://localhost:4567/obtenerExcelRegistros/${idCurso}`);
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -114,7 +116,14 @@ function ConsultaRegistros(Props) {
 
     const eliminarRegistro = async (idRegistro, idCurso) => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/eliminarRegistro', {
+            // const response = await fetch('http://187.216.225.247:4567/eliminarRegistro', {
+            //     method: 'DELETE',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({ idRegistro, idCurso }),
+            // });
+            const response = await fetch('http://localhost:4567/eliminarRegistro', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -216,7 +225,17 @@ function ConsultaRegistros(Props) {
                                                         setDataRegistros(updatedData);
 
                                                         try {
-                                                            const response = await fetch('http://187.216.225.247:4567/actualizarRegistro', {
+                                                            // const response = await fetch('http://187.216.225.247:4567/actualizarRegistro', {
+                                                            //     method: 'PUT',
+                                                            //     headers: {
+                                                            //         'Content-Type': 'application/json',
+                                                            //     },
+                                                            //     body: JSON.stringify({
+                                                            //         idRegistro: registro.idRegistro,
+                                                            //         asistencia: asistenciaActualizada,
+                                                            //     }),
+                                                            // });
+                                                            const response = await fetch('http://localhost:4567/actualizarRegistro', {
                                                                 method: 'PUT',
                                                                 headers: {
                                                                     'Content-Type': 'application/json',

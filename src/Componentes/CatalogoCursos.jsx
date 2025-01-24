@@ -37,7 +37,8 @@ function catalogoCursos() {
 
     const getTipoCursos = async () => {
         try {
-            const response = await fetch(`http://187.216.225.247:4567/obtenerTipoCurso`);
+            // const response = await fetch(`http://187.216.225.247:4567/obtenerTipoCurso`);
+            const response = await fetch(`http://localhost:4567/obtenerTipoCurso`);
             const data = await response.json();
             setDataTipoCurso(data);
         } catch (error) {
@@ -47,7 +48,14 @@ function catalogoCursos() {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://187.216.225.247:4567/eliminarTipoCurso`, {
+            // const response = await fetch(`http://187.216.225.247:4567/eliminarTipoCurso`, {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify({ id }),
+            // });
+            const response = await fetch(`http://localhost:4567/eliminarTipoCurso`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -216,7 +224,7 @@ function catalogoCursos() {
                                     key={index + 1}
                                     onClick={() => goToPage(index + 1)}
                                     disabled={currentPage === index + 1}
-                                    className="pagination-number"
+                                    className="numbers"
                                 >
                                     <span className='numbers'>{index + 1}</span>
                                 </Button>
