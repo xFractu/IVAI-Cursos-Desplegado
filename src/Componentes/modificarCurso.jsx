@@ -29,8 +29,8 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
 
     const getTiposCurso = async () => {
         try {
-            // const response = await fetch('http://187.216.225.247:4567/tipos');
-            const response = await fetch('http://localhost:4567/tipos');
+            const response = await fetch('http://187.216.225.247:4567/tipos');
+            // const response = await fetch('http://localhost:4567/tipos');
             const data = await response.json();
             setDataTiposCurso(data);
         } catch (error) {
@@ -123,20 +123,6 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         },
     };
 
-    const FormRow = ({ label, children }) => (
-        <Grid container item xs={12} alignItems="center" spacing={2}>
-            <Grid item xs={6}>
-                <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                    {label}
-                </Typography>
-            </Grid>
-            <Grid item xs={6}>
-                {children}
-            </Grid>
-        </Grid>
-    );
-
-
     return (
         <div className='layout_Modificar_Curso'>
             <header className="header_Modificar_Curso">
@@ -211,7 +197,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     error={!!errors.fecha}
                                     helperText={errors.fecha}
                                     sx={{
-                                        backgroundColor: '#FFFFFF', marginTop: 1, borderRadius: '15px',
+                                        backgroundColor: '#FFFFFF', marginTop: 1, borderRadius: '15px', width: '100%',
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '15px',
                                         }
@@ -236,7 +222,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     error={!!errors.hora}
                                     helperText={errors.hora}
                                     sx={{
-                                        backgroundColor: '#FFFFFF', marginTop: 1, borderRadius: '15px',
+                                        backgroundColor: '#FFFFFF', marginTop: 1, borderRadius: '15px', width: '100%',
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '15px',
                                         }
