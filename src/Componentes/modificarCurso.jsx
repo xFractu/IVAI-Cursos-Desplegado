@@ -150,7 +150,9 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     src={Arrow}
                                     alt="Web"
                                     className='IconoSalir'
-                                    onClick={onClose}
+                                    onClick={() => {
+                                        onClose();
+                                    }}
                                 />
                             </Grid>
                         </Grid>

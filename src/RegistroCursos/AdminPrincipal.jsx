@@ -34,7 +34,7 @@ function AdminPrincipal() {
                 </div>
                 <div className='Main-Admin'>
                     <div className='BotonesAdmin'>
-                        <RegistroMain />
+                        <RegistroMain/>
                     </div>
                     <div className="address-container">
                         <p className="dir">
