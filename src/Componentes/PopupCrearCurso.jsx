@@ -68,6 +68,25 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
         setErrors({ ...errors, [name]: '' });
     };
 
+    const handleInputChangeNombreCurso = (e) => {
+        const { name, value } = e.target;
+        
+        const regex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]*$/;
+        
+        if (regex.test(value) || value === "") { 
+            setDataCurso((prevData) => ({
+                ...prevData,
+                [name]: value
+            }));
+    
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                [name]: ''
+            }));
+        }
+    };
+    
+
 
     const validateFields = () => {
         const newErrors = {};
@@ -120,19 +139,19 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
                     onOpenPopupMsj({
                         titulo: 'Curso registrado',
                         mensaje: 'El curso se ha registrado correctamente'
-                    }, false); // `false` indica que no es un error.
+                    }, false);
                 } else {
                     onOpenPopupMsj({
                         titulo: 'Error en el Registro',
                         mensaje: 'Ocurrió un error durante el proceso. Por favor, inténtelo de nuevo más tarde.'
-                    }, true); // `true` indica que es un error.
+                    }, true);
                 }
             } catch (error) {
                 console.error('Error al registrar el curso:', error);
                 onOpenPopupMsj({
                     titulo: 'Error del servidor',
                     mensaje: 'No se pudo procesar la solicitud. Por favor, inténtelo de nuevo más tarde.'
-                }, true); // `true` indica que es un error.
+                }, true);
             }
         };
 
@@ -189,7 +208,7 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
                                 <Grid item xs={6}>
                                     <TextField fullWidth variant='outlined' size='small' name='nombreCurso'
                                         value={DataCurso.nombreCurso}
-                                        onChange={handleInputChange}
+                                        onChange={handleInputChangeNombreCurso}
                                         error={!!errors.nombreCurso} helperText={errors.nombreCurso}
                                         sx={{
                                             backgroundColor: '#FFFFFF', borderRadius: '15px',
