@@ -106,6 +106,24 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         }))
     };
 
+    const handleInputChangeNombreCurso = (e) => {
+        const { name, value } = e.target;
+        
+        const regex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]*$/;
+        
+        if (regex.test(value) || value === "") { 
+            setFormData((formData) => ({
+                ...formData,
+                [name]: value
+            }));
+    
+            setErrors((errors) => ({
+                ...errors,
+                [name]: ''
+            }));
+        }
+    };
+
     const handleDateInputClick = () => {
         dateInputRef.current.showPicker();
     };
@@ -175,7 +193,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     size="small"
                                     name="nombreCurso"
                                     value={formData.nombreCurso}
-                                    onChange={handleChange}
+                                    onChange={handleInputChangeNombreCurso}
                                     error={!!errors.nombreCurso}
                                     helperText={errors.nombreCurso}
                                     sx={commonStyles}
