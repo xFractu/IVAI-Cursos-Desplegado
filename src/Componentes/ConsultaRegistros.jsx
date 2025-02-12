@@ -235,16 +235,6 @@ function ConsultaRegistros(Props) {
                                                                     asistencia: asistenciaActualizada,
                                                                 }),
                                                             });
-                                                            // const response = await fetch('http://localhost:4567/actualizarRegistro', {
-                                                            //     method: 'PUT',
-                                                            //     headers: {
-                                                            //         'Content-Type': 'application/json',
-                                                            //     },
-                                                            //     body: JSON.stringify({
-                                                            //         idRegistro: registro.idRegistro,
-                                                            //         asistencia: asistenciaActualizada,
-                                                            //     }),
-                                                            // });
 
                                                             const data = await response.json();
                                                             console.log('Respuesta del servidor:', data.mensaje);
