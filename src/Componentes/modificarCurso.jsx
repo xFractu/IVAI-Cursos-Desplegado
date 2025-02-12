@@ -106,7 +106,24 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         }))
     };
 
-    const handleInputChangeNombreCurso = (e) => {
+    const handleChangeInputNumbers =(e) => {
+        const { name, value } = e.target;
+        const regex = /^[1-9\s]*$/
+
+        if(regex.test(value) || value === "") {
+            setFormData((formData) => ({
+                ...formData,
+                [name]: value
+            }));
+
+            setErrors((errors) => ({
+                ...errors,
+                [name]: ""
+            }));
+        }
+    }
+
+    const handleInputText = (e) => {
         const { name, value } = e.target;
         
         const regex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]*$/;
@@ -193,7 +210,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     size="small"
                                     name="nombreCurso"
                                     value={formData.nombreCurso}
-                                    onChange={handleInputChangeNombreCurso}
+                                    onChange={handleInputText}
                                     error={!!errors.nombreCurso}
                                     helperText={errors.nombreCurso}
                                     sx={commonStyles}
@@ -330,7 +347,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     value={formData.imparte}
                                     error={!!errors.imparte}
                                     helperText={errors.imparte}
-                                    onChange={handleChange}
+                                    onChange={handleInputText}
                                     sx={commonStyles}
                                 />
                             </Grid>
@@ -351,7 +368,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     value={formData.estatusCupo}
                                     error={!!errors.estatusCupo}
                                     helperText={errors.estatusCupo}
-                                    onChange={handleChange}
+                                    onChange={handleChangeInputNumbers}
                                     sx={commonStyles}
                                 />
                             </Grid>

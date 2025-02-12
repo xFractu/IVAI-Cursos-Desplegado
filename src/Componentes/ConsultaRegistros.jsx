@@ -222,7 +222,7 @@ function ConsultaRegistros(Props) {
 
                                                         const updatedData = [...dataRegistros];
                                                         updatedData[index].asistencia = asistenciaActualizada;
-                                                        setDataRegistros(updatedData);
+                                                        setDataRegistros(updatedData);  
 
                                                         try {
                                                             const response = await fetch('http://187.216.225.247:4567/actualizarRegistro', {
@@ -285,11 +285,13 @@ function ConsultaRegistros(Props) {
                         </div>
 
                         <Button onClick={nextPage} disabled={currentPage === totalPages}>Siguiente</Button>
+                        
                     </div>
 
                     <div className='button-Container'>
                         <Button onClick={() => obtenerRegistros(id)} variant="contained" sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Descargar Registros</Button>
                         <Button onClick={handleOpenPopup} variant="contained" sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Agregar Registro</Button>
+                        <Button variant='contained' sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Envíar Constancias</Button>
                     </div>
                     <div className="address-container">
                         <p className="dir">

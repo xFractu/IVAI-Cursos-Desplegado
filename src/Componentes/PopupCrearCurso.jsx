@@ -1,5 +1,6 @@
-import { Button, Card, CardActions, CardContent, CardHeader, Typography, Grid, TextField, Select, MenuItem, Grid2, styled, Input } from '@mui/material';
+import { Button, CardActions, CardContent, CardHeader, Typography, Grid, TextField, Select, MenuItem } from '@mui/material';
 import { useState, useEffect, useRef } from 'react';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Arrow from '../assets/cerrar2.svg'
 import '../Estilos/PopupAgregarCurso.css'
 import '../Principal/Principal.css'
@@ -8,8 +9,22 @@ import PopupMSJBien from './PopupMSJBien.jsx';
 import ConfirmIcon from '../assets/check.svg';
 import ErrorIcon from '../assets/error.svg';
 import facebook from '../assets/facebook.svg';
+import styled from '@emotion/styled';
+import { WineBar } from '@mui/icons-material';
 
-function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
+function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
+
+    const VisuallyHiddenInput = styled('input')({
+        clip: 'rect(0 0 0 0)',
+        clipPath: 'inset(50%)',
+        height: 1,
+        overflow: 'hidden',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        whiteSpace: 'nowrap',
+        width: 1,
+      });
 
     const [dataTiposCurso, setDataTiposCurso] = useState([])
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -70,22 +85,22 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
 
     const handleInputChangeNombreCurso = (e) => {
         const { name, value } = e.target;
-        
+
         const regex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]*$/;
-        
-        if (regex.test(value) || value === "") { 
+
+        if (regex.test(value) || value === "") {
             setDataCurso((prevData) => ({
                 ...prevData,
                 [name]: value
             }));
-    
+
             setErrors((prevErrors) => ({
                 ...prevErrors,
                 [name]: ''
             }));
         }
     };
-    
+
 
 
     const validateFields = () => {
@@ -124,36 +139,36 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
 
     const handleSubmit = async () => {
 
-            const validationErrors = validateFields();
-        
-            if (Object.keys(validationErrors).length > 0) {
-                setErrors(validationErrors);
-                return;
-            }
-        
-            try {
-                const respuesta = await axios.post("http://187.216.225.247:4567/registroCurso", DataCurso);
-                // const respuesta = await axios.post("http://localhost:4567/registroCurso", DataCurso);
-        
-                if (respuesta.status === 200) {
-                    onOpenPopupMsj({
-                        titulo: 'Curso registrado',
-                        mensaje: 'El curso se ha registrado correctamente'
-                    }, false);
-                } else {
-                    onOpenPopupMsj({
-                        titulo: 'Error en el Registro',
-                        mensaje: 'Ocurrió un error durante el proceso. Por favor, inténtelo de nuevo más tarde.'
-                    }, true);
-                }
-            } catch (error) {
-                console.error('Error al registrar el curso:', error);
+        const validationErrors = validateFields();
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        try {
+            const respuesta = await axios.post("http://187.216.225.247:4567/registroCurso", DataCurso);
+            // const respuesta = await axios.post("http://localhost:4567/registroCurso", DataCurso);
+
+            if (respuesta.status === 200) {
                 onOpenPopupMsj({
-                    titulo: 'Error del servidor',
-                    mensaje: 'No se pudo procesar la solicitud. Por favor, inténtelo de nuevo más tarde.'
+                    titulo: 'Curso registrado',
+                    mensaje: 'El curso se ha registrado correctamente'
+                }, false);
+            } else {
+                onOpenPopupMsj({
+                    titulo: 'Error en el Registro',
+                    mensaje: 'Ocurrió un error durante el proceso. Por favor, inténtelo de nuevo más tarde.'
                 }, true);
             }
-        };
+        } catch (error) {
+            console.error('Error al registrar el curso:', error);
+            onOpenPopupMsj({
+                titulo: 'Error del servidor',
+                mensaje: 'No se pudo procesar la solicitud. Por favor, inténtelo de nuevo más tarde.'
+            }, true);
+        }
+    };
 
     const handleClose = () => {
         setIsPopupOpen(false);
@@ -203,7 +218,7 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
                         <CardContent sx={{ color: '#FFFFFF' }}>
                             <Grid container item xs={12} alignItems='center' spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF',  fontSize: '2vh', fontWeight: 'bold' }}>Nombre del Curso:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Nombre del Curso:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField fullWidth variant='outlined' size='small' name='nombreCurso'
@@ -471,6 +486,20 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
                                         }} />
                                 </Grid>
                             </Grid>
+
+                            <Grid container item xs={12} alignItems='center' spacing={2}>
+                                <Grid item xs={6}>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Constacia del Curso:</Typography>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Button fullWidth LinkComponent='label' role={undefined} variant='contained' tabIndex={-1} startIcon={<CloudUploadIcon />}
+                                    sx={{marginTop: '1vh', borderRadius: '15px', backgroundColor: '#E7B756', color: '#000'}}>Subir Archivo<VisuallyHiddenInput
+                                        type="file"
+                                        onChange={(event) => console.log(event.target.files)}
+                                        multiple
+                                    /></Button>
+                                </Grid>
+                            </Grid>
                         </CardContent>
 
                     </div>
@@ -488,12 +517,12 @@ function PopupCrearCurso({ onClose,onOpenPopupMsj }) {
                 <div className="popup-overlay-confirmation-registro">
                     <div className={`popup-confirmation-registro ${isPopupOpen ? 'popup-show' : 'popup-hide'}`}>
                         <PopupMSJBien
-                            icon={isError ? ErrorIcon : ConfirmIcon} 
-                            title={dataError.titulo} 
-                            message={dataError.mensaje} 
+                            icon={isError ? ErrorIcon : ConfirmIcon}
+                            title={dataError.titulo}
+                            message={dataError.mensaje}
                             buttonText="Cerrar"
                             onClose={handleClose}
-                            
+
                         />
                     </div>
                 </div>
