@@ -8,6 +8,7 @@ import '../Estilos/PopupRegistroCurso.css'
 import axios from 'axios';
 import ConfirmIcon from '../assets/check.svg';
 import ErrorIcon from '../assets/error.svg';
+import { API_URL } from '../util/Constantes.js';
 
 function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setIsLoading }) {
 
@@ -68,8 +69,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
         setIsLoading(true);
      
         try {
-           const response = await axios.post('http://187.216.225.247:4567/registrarse', dataRegistro);
-        //    const response = await axios.post('http://localhost:4567/registrarse', dataRegistro);
+           const response = await axios.post(`${API_URL}registrarse`, dataRegistro);
            console.log(response.data);
            setIsLoading(false);
      
@@ -121,8 +121,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
 
         const obtenerEstados = async () => {
             try {
-                const response = await axios.post('http://187.216.225.247:4567/estado');
-                // const response = await axios.post('http://localhost:4567/estado');
+                const response = await axios.post(`${API_URL}estado`);
                 setEstados(response.data);
             } catch (error) {
                 console.error('Error al obtener los estados:', error);

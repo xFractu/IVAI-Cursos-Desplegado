@@ -10,7 +10,7 @@ import ConfirmIcon from '../assets/check.svg';
 import ErrorIcon from '../assets/error.svg';
 import facebook from '../assets/facebook.svg';
 import styled from '@emotion/styled';
-import { WineBar } from '@mui/icons-material';
+import { API_URL } from '../util/Constantes.js';
 
 function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
 
@@ -24,7 +24,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         left: 0,
         whiteSpace: 'nowrap',
         width: 1,
-      });
+    });
 
     const [dataTiposCurso, setDataTiposCurso] = useState([])
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -40,10 +40,11 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         mensaje: ''
     })
 
+    const [selectedFile, setFile] = useState(null);
+
     const getTiposCurso = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/tipos');
-            // const response = await fetch('http://localhost:4567/tipos');
+            const response = await fetch(`${API_URL}tipos`);
             const data = await response.json();
             setDataTiposCurso(data);
         } catch (error) {
@@ -54,7 +55,6 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
     useEffect(() => {
         const fetchTiposCurso = async () => {
             const tipos = await getTiposCurso();
-            setItems(tipos);
         };
 
         fetchTiposCurso();
@@ -74,7 +74,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         tipo: '',
         curso: '',
         ligaTeams: '',
-        valorCurricular: ''
+        valorCurricular: '',
     })
 
     const handleInputChange = (e) => {
@@ -101,7 +101,24 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         }
     };
 
+    const handleAddConstancia = (e) => {
+        const file = e.target.files[0];
 
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                const base64data = reader.result.split(',')[1];
+
+                setFile((selectedFile) => ({
+                    ...selectedFile,
+                    constancia: base64data
+                }));
+            };
+
+            reader.readAsDataURL(file);
+        }
+    };
 
     const validateFields = () => {
         const newErrors = {};
@@ -137,20 +154,57 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         timeInputRef.current.showPicker();
     };
 
-    const handleSubmit = async () => {
+    // const handleSubmit = async () => {
 
-        const validationErrors = validateFields();
+    //     const validationErrors = validateFields();
 
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
+    //     if (Object.keys(validationErrors).length > 0) {
+    //         setErrors(validationErrors);
+    //         return;
+    //     }
+
+    //     try {
+    //         const respuesta = await axios.post("http://187.216.225.247:4567/registroCurso", DataCurso);
+    //         // const respuesta = await axios.post("http://localhost:4567/registroCurso", DataCurso);
+
+    //         if (respuesta.status === 200) {
+    //             onOpenPopupMsj({
+    //                 titulo: 'Curso registrado',
+    //                 mensaje: 'El curso se ha registrado correctamente'
+    //             }, false);
+    //         } else {
+    //             onOpenPopupMsj({
+    //                 titulo: 'Error en el Registro',
+    //                 mensaje: 'Ocurrió un error durante el proceso. Por favor, inténtelo de nuevo más tarde.'
+    //             }, true);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error al registrar el curso:', error);
+    //         onOpenPopupMsj({
+    //             titulo: 'Error del servidor',
+    //             mensaje: 'No se pudo procesar la solicitud. Por favor, inténtelo de nuevo más tarde.'
+    //         }, true);
+    //     }
+    // };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const jsonData = {
+            curso: DataCurso,
+            constancia: selectedFile.constancia,
+        };
 
         try {
-            const respuesta = await axios.post("http://187.216.225.247:4567/registroCurso", DataCurso);
-            // const respuesta = await axios.post("http://localhost:4567/registroCurso", DataCurso);
+            const response = await fetch(`${API_URL}registroCurso`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(jsonData),
+            });
 
-            if (respuesta.status === 200) {
+            if (response.status === 200) {
                 onOpenPopupMsj({
                     titulo: 'Curso registrado',
                     mensaje: 'El curso se ha registrado correctamente'
@@ -169,6 +223,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
             }, true);
         }
     };
+
 
     const handleClose = () => {
         setIsPopupOpen(false);
@@ -464,7 +519,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                         defaultValue=''
                                     >
                                         {dataTiposCurso.map((item) => (
-                                            <MenuItem value={item}>{item}</MenuItem>
+                                            <MenuItem value={item} key={item}>{item}</MenuItem>
                                         ))}
                                     </Select>
                                 </Grid>
@@ -492,12 +547,24 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                     <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Constacia del Curso:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Button fullWidth LinkComponent='label' role={undefined} variant='contained' tabIndex={-1} startIcon={<CloudUploadIcon />}
-                                    sx={{marginTop: '1vh', borderRadius: '15px', backgroundColor: '#E7B756', color: '#000'}}>Subir Archivo<VisuallyHiddenInput
-                                        type="file"
-                                        onChange={(event) => console.log(event.target.files)}
-                                        multiple
-                                    /></Button>
+                                    <Button
+                                        sx={{ marginTop: '1vh', borderRadius: '15px', backgroundColor: '#E7B756', color: '#000' }}
+                                        fullWidth
+                                        component="label"
+                                        role={undefined}
+                                        variant="contained"
+                                        tabIndex={-1}
+                                        startIcon={<CloudUploadIcon />}
+                                    >
+                                        Upload files
+                                        <VisuallyHiddenInput
+                                            type="file"
+                                            name='constancia'
+                                            id='constancia'
+                                            onChange={handleAddConstancia}
+                                            multiple
+                                        />
+                                    </Button>
                                 </Grid>
                             </Grid>
                         </CardContent>

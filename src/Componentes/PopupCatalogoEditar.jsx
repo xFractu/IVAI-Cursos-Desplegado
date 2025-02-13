@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { CardHeader, Grid, Typography, CardContent, TextField, CardActionArea, Button, Select, MenuItem } from "@mui/material";
 import axios from "axios";
 import X from '../assets/cerrar.svg';
+import { API_URL } from '../util/Constantes.js';
 
 function PopupCatalogoEditar({ 
     onClose, 
@@ -17,8 +18,7 @@ function PopupCatalogoEditar({
     // Obtener los tipos de curso
     const getTiposCurso = async () => {
         try {
-            const response = await axios.get('http://187.216.225.247:4567/obtenerTipoCurso');
-            // const response = await axios.get('http://localhost:4567/obtenerTipoCurso');
+            const response = await axios.get(`${API_URL}obtenerTipoCurso`);
             setDataTipoCurso(response.data);
         } catch (error) {
             console.error('Error al obtener los tipos de curso:', error);
@@ -45,14 +45,10 @@ function PopupCatalogoEditar({
         }
 
         try {
-            const response = await axios.put('http://187.216.225.247:4567/actualizarTipoCurso', {
+            const response = await axios.put(`${API_URL}actualizarTipoCurso`, {
                 id: selectedCurso,
                 tipo: textFieldValue
             });
-            // const response = await axios.put('http://localhost:4567/actualizarTipoCurso', {
-            //     id: selectedCurso,
-            //     tipo: textFieldValue
-            // });
 
             if (response.status === 200) {
                 // Mensaje de éxito

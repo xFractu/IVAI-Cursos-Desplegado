@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Estilos/SelectCursos.css';
 import { Button, } from "@mui/material";
 import CardModificar from '../Componentes/CardModificar';
-
+import { API_URL } from '../util/Constantes.js';
 
 function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
 
@@ -35,8 +35,7 @@ function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
 
     const reloadCursos = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/obtenerCursos');
-            // const response = await fetch('http://localhost:4567/obtenerCursos');
+            const response = await fetch(`${API_URL}obtenerCursos`);
             const data = await response.json();
             setDataCurso(data);
         } catch (error) {

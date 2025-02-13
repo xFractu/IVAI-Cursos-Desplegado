@@ -16,9 +16,7 @@ import ConfirmIcon from '../assets/check.svg';
 import PopupMSJBien from './PopupMSJBien.jsx'
 import ErrorIcon from '../assets/error.svg';
 import CargandoIvai from '../Imagenes/Ivaisito2.0.png'
-
-
-
+import { API_URL } from '../util/Constantes.js';
 
 function ConsultaRegistros(Props) {
 
@@ -40,8 +38,7 @@ function ConsultaRegistros(Props) {
 
     const getRegistros = async (idCurso) => {
         try {
-            const response = await fetch(`http://187.216.225.247:4567/obtenerRegistros/${idCurso}`);
-            // const response = await fetch(`http://localhost:4567/obtenerRegistros/${idCurso}`);
+            const response = await fetch(`${API_URL}obtenerRegistros/${idCurso}`);
             const data = await response.json();
             setDataRegistros(data);
         } catch (error) {
@@ -69,7 +66,7 @@ function ConsultaRegistros(Props) {
                 Props.reloadCursos();
                 document.body.style.overflow = "auto";
                 setScrollEnabled(true);
-            }, 300); // Duración de la animación de salida
+            }, 300);
         }
     };
 
@@ -92,15 +89,14 @@ function ConsultaRegistros(Props) {
                 Props.reloadCursos();
                 document.body.style.overflow = "auto";
                 setScrollEnabled(true);
-            }, 300); // Duración de la animación de salida
+            }, 300);
         }
     };
 
 
     const obtenerRegistros = async (idCurso) => {
         try {
-            const response = await fetch(`http://187.216.225.247:4567/obtenerExcelRegistros/${idCurso}`);
-            // const response = await fetch(`http://localhost:4567/obtenerExcelRegistros/${idCurso}`);
+            const response = await fetch(`${API_URL}obtenerExcelRegistros/${idCurso}`);
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -116,20 +112,13 @@ function ConsultaRegistros(Props) {
 
     const eliminarRegistro = async (idRegistro, idCurso) => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/eliminarRegistro', {
+            const response = await fetch(`${API_URL}eliminarRegistro`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ idRegistro, idCurso }),
             });
-            // const response = await fetch('http://localhost:4567/eliminarRegistro', {
-            //     method: 'DELETE',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ idRegistro, idCurso }),
-            // });
 
             if (response.ok) {
                 getRegistros(idCurso);
@@ -138,6 +127,29 @@ function ConsultaRegistros(Props) {
             }
         } catch (error) {
             console.error('Error al eliminar el registro del curso:', error);
+        }
+    };
+
+    const mandarConstancias = async (idCurso) => {
+        try {
+            const response = await fetch(`${API_URL}obtenerPdf/${idCurso}`);
+            
+            if (!response.ok) {
+                throw new Error("No se pudo descargar el archivo");
+            }
+    
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+    
+            a.href = url;
+            a.download = response.headers.get("Content-Disposition")?.split("filename=")[1] || "archivo";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("Error al descargar el archivo:", error);
         }
     };
 
@@ -225,7 +237,7 @@ function ConsultaRegistros(Props) {
                                                         setDataRegistros(updatedData);  
 
                                                         try {
-                                                            const response = await fetch('http://187.216.225.247:4567/actualizarRegistro', {
+                                                            const response = await fetch(`${API_URL}actualizarRegistro`, {
                                                                 method: 'PUT',
                                                                 headers: {
                                                                     'Content-Type': 'application/json',
@@ -281,7 +293,7 @@ function ConsultaRegistros(Props) {
                     <div className='button-Container'>
                         <Button onClick={() => obtenerRegistros(id)} variant="contained" sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Descargar Registros</Button>
                         <Button onClick={handleOpenPopup} variant="contained" sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Agregar Registro</Button>
-                        <Button variant='contained' sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Envíar Constancias</Button>
+                        <Button onClick={() => mandarConstancias(id)} variant='contained' sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Envíar Constancias</Button>
                     </div>
                     <div className="address-container">
                         <p className="dir">

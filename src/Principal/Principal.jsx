@@ -11,7 +11,7 @@ import CardInfo from '../Componentes/CardInfo';
 import Ubi from '../assets/ubi.svg'
 import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
-
+import { API_URL } from '../util/Constantes.js';
 
 function Principal() {
 
@@ -26,8 +26,7 @@ function Principal() {
 
     const getCursos = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/obtenerCursos');
-            // const response = await fetch('http://localhost:4567/obtenerCursos');
+            const response = await fetch(`${API_URL}obtenerCursos`);
             const data = await response.json();
             setDataCurso(data);
         } catch (error) {

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import '../Principal/Principal.css'
 import Arrow from '../assets/cerrar2.svg'
 import Axios from 'axios';
+import { API_URL } from '../util/Constantes.js';
 
 function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccion, imparte, estatusCupo, estatusCurso, tipoCurso, curso, valorCurricular, ligaTeams, closePrev, onOpenPopupMsj }) {
 
@@ -29,8 +30,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
 
     const getTiposCurso = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/tipos');
-            // const response = await fetch('http://localhost:4567/tipos');
+            const response = await fetch(`${API_URL}tipos`);
             const data = await response.json();
             setDataTiposCurso(data);
         } catch (error) {
@@ -80,7 +80,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         }
 
         try {
-            const response = await Axios.put('http://187.216.225.247:4567/actualizar', finalFormData, {
+            const response = await Axios.put(`${API_URL}actualizar`, finalFormData, {
                 headers: {
                     'Content-Type': 'application/json',
                 }

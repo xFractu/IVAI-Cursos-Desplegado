@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import '../Principal/Principal.css'
 import Arrow from '../assets/cerrar2.svg'
 import Axios from 'axios';
-
+import { API_URL } from '../util/Constantes.js';
 
 function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccion, imparte, estatusCupo, estatusCurso, tipoCurso, curso, valorCurricular, ligaTeams, closePrev, onOpenPopupMsj }) {
     const [errors, setErrors] = useState({});
@@ -13,8 +13,7 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
 
     const getTiposCurso = async () => {
         try {
-            const response = await fetch('http://187.216.225.247:4567/tipos');
-            // const response = await fetch('http://localhost:4567/tipos');
+            const response = await fetch(`${API_URL}tipos`);
             const data = await response.json();
             setDataTiposCurso(data);
         } catch (error) {
@@ -97,16 +96,11 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
         }
 
         try {
-            const response = await Axios.put('http://187.216.225.247:4567/actualizar', finalFormData, {
+            const response = await Axios.put(`${API_URL}actualizar`, finalFormData, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
-            // const response = await Axios.put('http://localhost:4567/actualizar', finalFormData, {
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     }
-            // });
             onOpenPopupMsj();
         } catch (error) {
             console.error('Error al actualizar el curso:', error);
