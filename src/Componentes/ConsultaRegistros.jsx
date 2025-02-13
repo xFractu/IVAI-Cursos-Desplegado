@@ -231,11 +231,16 @@ function ConsultaRegistros(Props) {
                                                     checked={registro.asistencia === 'true'}
                                                     onChange={async (e) => {
                                                         const asistenciaActualizada = e.target.checked ? 'true' : 'false';
-
+                                                    
+                                                        // Buscar el índice correcto en dataRegistros
                                                         const updatedData = [...dataRegistros];
-                                                        updatedData[index].asistencia = asistenciaActualizada;
-                                                        setDataRegistros(updatedData);  
-
+                                                        const registroIndex = updatedData.findIndex((r) => r.idRegistro === registro.idRegistro);
+                                                        
+                                                        if (registroIndex !== -1) {
+                                                            updatedData[registroIndex].asistencia = asistenciaActualizada;
+                                                            setDataRegistros(updatedData);
+                                                        }
+                                                    
                                                         try {
                                                             const response = await fetch(`${API_URL}actualizarRegistro`, {
                                                                 method: 'PUT',
@@ -247,10 +252,10 @@ function ConsultaRegistros(Props) {
                                                                     asistencia: asistenciaActualizada,
                                                                 }),
                                                             });
-
+                                                    
                                                             const data = await response.json();
                                                             console.log('Respuesta del servidor:', data.mensaje);
-
+                                                    
                                                         } catch (error) {
                                                             console.error('Error al actualizar la asistencia:', error);
                                                         }
