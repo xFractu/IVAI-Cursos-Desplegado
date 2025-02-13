@@ -130,10 +130,10 @@ function ConsultaRegistros(Props) {
         }
     };
 
-    const mandarConstancias = async (idCurso) => {
+    const mandarConstancias = async (idCurso) => { 
         try {
             const response = await fetch(`${API_URL}obtenerPdf/${idCurso}`);
-            
+    
             if (!response.ok) {
                 throw new Error("No se pudo descargar el archivo");
             }
@@ -143,7 +143,7 @@ function ConsultaRegistros(Props) {
             const a = document.createElement("a");
     
             a.href = url;
-            a.download = response.headers.get("Content-Disposition")?.split("filename=")[1] || "archivo";
+            a.download = "constancias.zip";  // Nombre del archivo ZIP
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
