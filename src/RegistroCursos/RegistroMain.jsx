@@ -209,6 +209,7 @@ function RegistroMain() {
               modalidad={selectedCurso.modalidad}
               direccion={selectedCurso.direccion}
               imparte={selectedCurso.imparte}
+              cupo={selectedCurso.cupo}
               estatusCupo={selectedCurso.estatusCupo}
               estatusCurso={selectedCurso.estatusCurso}
               tipoCurso={selectedCurso.tipo}

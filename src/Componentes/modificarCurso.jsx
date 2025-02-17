@@ -5,7 +5,7 @@ import Arrow from '../assets/cerrar2.svg'
 import Axios from 'axios';
 import { API_URL } from '../util/Constantes.js';
 
-function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccion, imparte, estatusCupo, estatusCurso, tipoCurso, curso, valorCurricular, ligaTeams, closePrev, onOpenPopupMsj }) {
+function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccion, imparte, cupo, estatusCupo, estatusCurso, tipoCurso, curso, valorCurricular, ligaTeams, closePrev, onOpenPopupMsj }) {
 
     const [errors, setErrors] = useState({});
     const [dataTiposCurso, setDataTiposCurso] = useState([])
@@ -16,6 +16,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         fecha: fecha,
         hora: hora,
         imparte: imparte,
+        cupo: cupo,
         estatusCupo: estatusCupo,
         estatusCurso: estatusCurso,
         modalidad: modalidad,
@@ -364,8 +365,8 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     fullWidth
                                     variant="outlined"
                                     size="small"
-                                    name="estatusCupo"
-                                    value={formData.estatusCupo}
+                                    name="cupo"
+                                    value={formData.cupo || ""}
                                     error={!!errors.estatusCupo}
                                     helperText={errors.estatusCupo}
                                     onChange={handleChangeInputNumbers}
