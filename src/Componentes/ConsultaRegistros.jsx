@@ -130,6 +130,8 @@ function ConsultaRegistros(Props) {
         }
     };
 
+           
+
     const mandarConstancias = async (idCurso) => { 
         try {
             const response = await fetch(`${API_URL}obtenerPdf/${idCurso}`);
@@ -226,6 +228,8 @@ function ConsultaRegistros(Props) {
                                     <th>Correo Electrónico</th>
                                     <th>Intérprete</th>
                                     <th>Asistencia</th>
+                                    <th>Acción</th>
+                                    <th>Constancia</th>
                                 </tr>
                             </thead>
                             <tbody className='table-Data'>
@@ -280,6 +284,7 @@ function ConsultaRegistros(Props) {
                                                 />
                                             </td>
                                             <td><label className='delete-register' onClick={() => eliminarRegistro(registro.idRegistro, registro.idCurso)}><u>Eliminar</u></label></td>
+                                            <td><label className='delete-register' onClick={() => mandarConstanciasAsistenteCorreo(id,registro.idRegistro)}><u>Enviar</u></label></td>
                                         </tr>
                                     ))
                                 ) : (
