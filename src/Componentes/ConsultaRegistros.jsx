@@ -130,10 +130,10 @@ function ConsultaRegistros(Props) {
         }
     };
 
-    const mandarConstancias = async (idCurso) => {
+    const mandarConstancias = async (idCurso) => { 
         try {
             const response = await fetch(`${API_URL}obtenerPdf/${idCurso}`);
-            
+    
             if (!response.ok) {
                 throw new Error("No se pudo descargar el archivo");
             }
@@ -143,7 +143,7 @@ function ConsultaRegistros(Props) {
             const a = document.createElement("a");
     
             a.href = url;
-            a.download = response.headers.get("Content-Disposition")?.split("filename=")[1] || "archivo";
+            a.download = "constancias.zip";  // Nombre del archivo ZIP
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -152,6 +152,23 @@ function ConsultaRegistros(Props) {
             console.error("Error al descargar el archivo:", error);
         }
     };
+
+
+
+    const mandarConstanciasCorreo = async (idCurso) => {
+        try {
+          const response = await fetch(`${API_URL}enviarConstancias/${idCurso}`);
+          if (!response.ok) {
+            throw new Error("Error al enviar los correos");
+          }
+          const mensaje = await response.text();
+          alert(mensaje);
+        } catch (error) {
+          console.error("Error al enviar los correos:", error);
+        }
+      };
+      
+    
 
     const handleNavigation = () => {
         navigate('/RegistroCurso');
@@ -298,7 +315,8 @@ function ConsultaRegistros(Props) {
                     <div className='button-Container'>
                         <Button onClick={() => obtenerRegistros(id)} variant="contained" sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Descargar Registros</Button>
                         <Button onClick={handleOpenPopup} variant="contained" sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Agregar Registro</Button>
-                        <Button onClick={() => mandarConstancias(id)} variant='contained' sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Envíar Constancias</Button>
+                        <Button onClick={() => mandarConstancias(id)} variant='contained' sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Descargar Constancias</Button>
+                        <Button onClick={() => mandarConstanciasCorreo(id)} variant='contained' sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw' }}>Envíar Constancias</Button>
                     </div>
                     <div className="address-container">
                         <p className="dir">
