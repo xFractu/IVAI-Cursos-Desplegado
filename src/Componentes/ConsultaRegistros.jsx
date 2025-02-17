@@ -17,8 +17,12 @@ import PopupMSJBien from './PopupMSJBien.jsx'
 import ErrorIcon from '../assets/error.svg';
 import CargandoIvai from '../Imagenes/Ivaisito2.0.png'
 import { API_URL } from '../util/Constantes.js';
+import { alignProperty } from '@mui/material/styles/cssUtils.js';
 
 function ConsultaRegistros(Props) {
+
+    var cupoRestante = window.localStorage.getItem('CupoRestante')
+    var cupoTotal = window.localStorage.getItem('CupoTotal')
 
     const [dataRegistros, setDataRegistros] = useState([]);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -216,6 +220,8 @@ function ConsultaRegistros(Props) {
                     
                 </div>
                 <div className='Main-Admin'>
+
+                    <div style={{ textAlign:'end', marginRight:'12%', fontSize:'22px' }}>Cupos: {cupoRestante} / {cupoTotal}</div>
                     
                     <div className='table-Container'>
                         <table>

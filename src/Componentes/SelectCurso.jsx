@@ -93,6 +93,7 @@ function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
                                     DireccionCurso={curso.direccion}
                                     ExpositorCurso={curso.imparte}
                                     HoraCurso={curso.hora}
+                                    Cupo={curso.cupo}
                                     EstatusCupo={curso.estatusCupo}
                                     EstatusCurso={curso.estatusCurso}
                                     TipoCurso={curso.tipo}
