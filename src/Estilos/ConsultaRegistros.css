@@ -48,7 +48,7 @@ body {
     height: 5vh;
     position: relative;
     padding-top: 4vw;
-    padding-bottom: 2vw;
+    padding-bottom: 1vw;
 }
 
 .header-img-left {
@@ -73,7 +73,7 @@ body {
 }
 
 .Main {
-    padding-top: 5vw;
+    padding-top: 1vw;
     grid-row: 2;
     background: linear-gradient(#A35494, #ffffff 20%);
     justify-content: center;
