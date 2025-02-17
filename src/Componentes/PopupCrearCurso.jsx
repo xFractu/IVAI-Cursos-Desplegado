@@ -39,8 +39,9 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         titulo: '',
         mensaje: ''
     })
-
+    
     const [selectedFile, setFile] = useState(null);
+    const [fileName, setFileName] = useState('');
 
     const getTiposCurso = async () => {
         try {
@@ -105,6 +106,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         const file = e.target.files[0];
 
         if (file) {
+            setFileName(file.name)
             const reader = new FileReader();
 
             reader.onloadend = () => {
@@ -556,7 +558,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                         tabIndex={-1}
                                         startIcon={<CloudUploadIcon />}
                                     >
-                                        Upload files
+                                        {fileName || 'Upload File'}
                                         <VisuallyHiddenInput
                                             type="file"
                                             name='constancia'
