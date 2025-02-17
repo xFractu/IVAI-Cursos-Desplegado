@@ -159,7 +159,26 @@ function ConsultaRegistros(Props) {
         }
     };
 
-
+    const mandarConstanciasAsistenteCorreo = async (idCurso, idRegistro) => {
+        try {
+          const response = await fetch(`${API_URL}mandarConstanciaAsistente`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ idCurso, idRegistro }),
+          });
+          
+          if (!response.ok) {
+            throw new Error("Error al enviar los correos");
+          }
+          
+          const mensaje = await response.text();
+          alert(mensaje);
+        } catch (error) {
+          console.error("Error al enviar los correos:", error);
+        }
+      };
 
     const mandarConstanciasCorreo = async (idCurso) => {
         try {
