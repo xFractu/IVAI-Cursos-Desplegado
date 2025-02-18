@@ -162,7 +162,11 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                             Los campos marcados con <br />
                                             asterisco (*) son obligatorios
                                         </label>
+                                        
                                     </Grid>
+                                    <label className='lbl-campos-obligatorios' >
+                                    Escribe correctamente tu nombre, ya que se tomara en cuenta para la constancia.
+                                        </label>
                                 </Grid>
                                 <Grid item>
 
