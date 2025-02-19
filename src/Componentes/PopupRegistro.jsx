@@ -76,6 +76,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
            if (response.data === 'Registro Correcto' && response.status === 200) {
             let cupos = cuposRestantes;
             setCuposRestantes(cupos - 1);
+            cuposRestantes = cupos - 1;
               onOpenPopupMsj({
                  titulo: 'Registro Exitoso',
                  mensaje: 'El proceso se ha realizado correctamente. \nLe hemos enviado un correo electrónico con el enlace de acceso, favor de verificar todas las bandejas del correo electrónico.'

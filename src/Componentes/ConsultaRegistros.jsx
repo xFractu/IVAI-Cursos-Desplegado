@@ -440,7 +440,7 @@ function ConsultaRegistros(Props) {
                                 cupo={Props.CupoDisponible}
                                 onReload={getRegistros(id)}
                                 setIsLoading={setIsLoading} 
-                                cuposRestantes={cupoRestante}
+                                cuposRestantes={dataCupoRestante}
                                 setCuposRestantes={setDataCupoRestante}
                             />
                         </div>
