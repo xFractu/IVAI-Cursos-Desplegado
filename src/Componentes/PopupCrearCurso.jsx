@@ -66,7 +66,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         fecha: '',
         hora: '',
         imparte: '',
-        Cupo: 0,
+        cupo: 0,
         estatusCupo: 0,
         estatusCurso: '',
         modalidad: '',
@@ -410,7 +410,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                     <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Lugares Disponibles:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField fullWidth variant='outlined' size='small' name='estatusCupo'
+                                    <TextField fullWidth variant='outlined' size='small' name='cupo'
                                         error={!!errors.estatusCupo} helperText={errors.estatusCupo}
                                         onChange={handleInputChange}
                                         sx={{
