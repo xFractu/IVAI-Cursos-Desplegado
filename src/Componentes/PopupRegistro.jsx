@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardHeader, Typography, IconButton, Grid, TextField, Select, MenuItem, ToggleButton, ToggleButtonGroup, Switch, Stack, Grid2 } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader, Typography, Grid, TextField, Select, MenuItem, Switch, Stack } from '@mui/material';
 import { useState, useEffect } from 'react';
 import PopupMSJBien from './PopupMSJBien.jsx'
 import Arrow from '../assets/cerrar2.svg'
@@ -10,7 +10,7 @@ import ConfirmIcon from '../assets/check.svg';
 import ErrorIcon from '../assets/error.svg';
 import { API_URL } from '../util/Constantes.js';
 
-function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setIsLoading }) {
+function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setIsLoading, cuposRestantes, setCuposRestantes }) {
 
 
     const [errors, setErrors] = useState({});
@@ -74,6 +74,8 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
            setIsLoading(false);
      
            if (response.data === 'Registro Correcto' && response.status === 200) {
+            let cupos = cuposRestantes;
+            setCuposRestantes(cupos - 1);
               onOpenPopupMsj({
                  titulo: 'Registro Exitoso',
                  mensaje: 'El proceso se ha realizado correctamente. \nLe hemos enviado un correo electrónico con el enlace de acceso, favor de verificar todas las bandejas del correo electrónico.'

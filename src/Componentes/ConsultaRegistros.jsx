@@ -35,6 +35,25 @@ function ConsultaRegistros(Props) {
    mensaje: '',
 });
 
+    const [dataCupoRestante, setDataCupoRestante] = useState(cupoRestante)
+
+    const [curso, setCurso] = useState ({
+        nombreCurso: '',
+        fecha: '',
+        hora: '',
+        imparte: '',
+        Cupo: 0,
+        estatusCupo: 0,
+        estatusCurso: '',
+        modalidad: '',
+        direccion: '',
+        correoSeguimiento: 'cursos.ivai@gmail.com',
+        tipo: '',
+        curso: '',
+        ligaTeams: '',
+        valorCurricular: '',
+    })
+
     const id = window.localStorage.getItem('id');
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
@@ -47,6 +66,16 @@ function ConsultaRegistros(Props) {
             setDataRegistros(data);
         } catch (error) {
             console.error('Error al obtener los registros de curso:', error);
+        }
+    };
+
+    const getCurso = async (idCurso) => {
+        try {
+            const response = await fetch(`${API_URL}obtenerCurso/${idCurso}`);
+            const data = await response.json();
+            setCurso(data);
+        } catch (error) {
+            console.error('Error al obtener el curso');
         }
     };
 
@@ -240,7 +269,7 @@ function ConsultaRegistros(Props) {
                 </div>
                 <div className='Main-Admin'>
 
-                    <div style={{ textAlign:'end', marginRight:'12%', fontSize:'22px' }}>Cupos: {cupoRestante} / {cupoTotal}</div>
+                    <div style={{ textAlign:'end', marginRight:'12%', fontSize:'22px' }}>Cupos: {dataCupoRestante} / {cupoTotal}</div>
                     
                     <div className='table-Container'>
                         <table>
@@ -410,14 +439,16 @@ function ConsultaRegistros(Props) {
                                 onOpenPopupMsj={(errorData, errorStatus) => handleOpenPopupMsj(errorData, errorStatus)}
                                 cupo={Props.CupoDisponible}
                                 onReload={getRegistros(id)}
-                                setIsLoading={setIsLoading} // Pasa setIsLoading a PopupRegistro
+                                setIsLoading={setIsLoading} 
+                                cuposRestantes={cupoRestante}
+                                setCuposRestantes={setDataCupoRestante}
                             />
                         </div>
                     </div>
                 </div>
             )}
             
-            {isLoading && ( // Muestra el spinner si isLoading es true
+            {isLoading && ( 
                 <div className="popup-overlay">
                     <div className="spinner">
                         <img className="cargando" src={CargandoIvai} />
