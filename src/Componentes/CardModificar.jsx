@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 function CardModificar(Props) {
     const navigate = useNavigate();
-    console.log(Props)
 
     const handleConsultarRegistros = (idCurso) => {
         window.localStorage.setItem('id', idCurso);
