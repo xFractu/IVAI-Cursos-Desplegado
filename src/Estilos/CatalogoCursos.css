@@ -282,6 +282,16 @@ th {
     filter: invert(100%);
 }
 
+@media (max-width: 1600px){
+
+    .ScrollRegistro{
+        height: 1vh;
+    }
+
+    
+
+
+}
 
 @media (max-width: 1280px) {
 

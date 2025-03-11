@@ -405,6 +405,18 @@ body {
 
 }
 
+@media (max-width: 1600px){
+
+    .ScrollRegistro{
+        height: 80vw;
+    }
+
+    .footer{
+        height: 8vw;
+    }
+
+}
+
 @media (max-width: 1024px) {
 
     

@@ -149,6 +149,61 @@
 }
 
 
+
+@media (max-width: 1600px) {
+
+  .layout_registrar_curso{
+
+    height: 95vh;
+    
+  }
+
+  .header_registrar_curso{
+    height: 7vw;
+  }
+
+  .main_registrar_curso{
+    max-height: 67vh;
+  }
+
+
+  .ScrollRegistro{
+    height: 80vh;
+  }
+
+  .footer_registrar_Curso {
+    
+    padding-top: 10vw;
+
+  }
+
+  .lbl-campos-obligatorios{
+    font-size: 1vw;
+  }
+
+  .IconoSalir{
+    width: 6vw;
+    height: 6vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 2vw;
+    padding-right: 3vw;
+}
+
+.spinner .cargando{
+  max-width: 25vw;
+  max-height: 50vw;
+  margin-right: 22vw;
+}
+
+
+
+
+
+}
+
+
   
 
   
@@ -165,7 +220,7 @@
   }
 
   .main_registrar_curso{
-    max-height: 100vh;
+    max-height: 68vh;
   }
 
 
@@ -175,12 +230,12 @@
 
   .footer_registrar_Curso {
     
-    padding-top: 0vw;
+    padding-top: 10vw;
 
   }
 
   .lbl-campos-obligatorios{
-    font-size: 1.4vw;
+    font-size: 1vw;
   }
 
   .IconoSalir{
@@ -209,7 +264,7 @@
 
   .layout_registrar_curso{
 
-    height: 65vh;
+    height: 90vh;
     
   }
 
